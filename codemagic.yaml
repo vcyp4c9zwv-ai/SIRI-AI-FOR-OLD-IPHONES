@@ -16,9 +16,8 @@ workflows:
 
 
 
-    scripts:
-      
-- name: Build iOS Simulator
+     scripts:
+      - name: Build iOS Simulator
         script: |
           xcodebuild \
             -project "$CM_BUILD_DIR/$XCODE_PROJECT" \

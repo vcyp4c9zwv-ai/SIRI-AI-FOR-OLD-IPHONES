@@ -4,7 +4,7 @@ workflows:
     max_build_duration: 10
     instance_type: mac_mini_m2
 
-   environment:
+    environment:
       xcode: latest
       cocoapods: default
       vars:
@@ -12,7 +12,7 @@ workflows:
         XCODE_SCHEME: SiriAI
 
   
-   scripts:
+    scripts:
       - name: Build iOS Simulator
         script: |
           xcodebuild \

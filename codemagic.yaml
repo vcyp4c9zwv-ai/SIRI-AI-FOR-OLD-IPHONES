@@ -22,8 +22,9 @@ workflows:
           cd "$CM_BUILD_DIR"
           xcodegen generate --spec project.yml
 
-      - name: Build iOS Simulator
+            - name: Build iOS Simulator
         script: |
+          set -o pipefail
           xcodebuild \
             -project "$CM_BUILD_DIR/$XCODE_PROJECT" \
             -scheme "$XCODE_SCHEME" \
@@ -31,7 +32,8 @@ workflows:
             -configuration Debug \
             -derivedDataPath build \
             CODE_SIGNING_ALLOWED=NO \
-            build
+            build 2>&1 | tee build.log
+          grep -n -E "error:|warning:|fatal error:" build.log || true
 
     artifacts:
       - build/**/*.log

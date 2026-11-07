@@ -35,3 +35,7 @@ workflows:
             CODE_SIGNING_ALLOWED=NO \
             build 2>&1 | tee build.log
           grep -n -E "error:|warning:|fatal error:" build.log || true
+    artifacts:
+      - build/Build/Products/Debug-iphonesimulator/*.app
+      - build/Build/Products/Debug-iphonesimulator/*.dSYM
+      - build.log

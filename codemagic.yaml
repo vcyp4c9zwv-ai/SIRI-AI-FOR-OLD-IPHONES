@@ -7,16 +7,14 @@ workflows:
     environment:
       ios_signing:
         distribution_type: development
-        bundle_identifier: com.vintage.siriai
+       bundle_identifier: com.vintage.siriai
       xcode: latest
       cocoapods: default
       vars:
         XCODE_PROJECT: SiriAI.xcodeproj
         XCODE_SCHEME: SiriAI
 
-
-
-     scripts:
+    scripts:
       - name: Build iOS Simulator
         script: |
           xcodebuild \
@@ -27,7 +25,6 @@ workflows:
             -derivedDataPath build \
             CODE_SIGNING_ALLOWED=NO \
             build
-      
 
     artifacts:
       - build/**/*.log

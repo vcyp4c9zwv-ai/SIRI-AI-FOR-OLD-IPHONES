@@ -1,0 +1,25 @@
+name: SiriAI
+
+options:
+  bundleIdPrefix: com.vintage
+
+targets:
+  SiriAI:
+    type: application
+    platform: iOS
+    sources:
+      - path: .
+        excludes:
+          - SiriAIWidget.swift
+          - SiriAILiveActivity.swift
+          - SiriAIWidget-Info.plist
+          - SiriAIApp-Info.plist
+          - project.yml
+          - codemagic.yaml
+    info:
+      path: SiriAIApp-Info.plist
+    settings:
+      base:
+        PRODUCT_BUNDLE_IDENTIFIER: com.vintage.siriai
+        IPHONEOS_DEPLOYMENT_TARGET: "17.0"
+        SWIFT_VERSION: "5.0"

@@ -6,7 +6,7 @@ workflows:
 
     environment:
       ios_signing:
-        distribution_type: app_store
+        distribution_type: development
         bundle_identifier: com.vintage.siriai
       xcode: latest
       cocoapods: default
@@ -14,22 +14,23 @@ workflows:
         XCODE_PROJECT: SiriAI.xcodeproj
         XCODE_SCHEME: SiriAI
 
-    integrations:
-      app_store_connect: siri_ai_asc
+
 
     scripts:
-      - name: Set up signing
+      
+- name: Build iOS Simulator
         script: |
-          xcode-project use-profiles
-
-      - name: Build IPA
-        script: |
-          xcode-project build-ipa \
-            --project "$CM_BUILD_DIR/$XCODE_PROJECT" \
-            --scheme "$XCODE_SCHEME"
+          xcodebuild \
+            -project "$CM_BUILD_DIR/$XCODE_PROJECT" \
+            -scheme "$XCODE_SCHEME" \
+            -sdk iphonesimulator \
+            -configuration Debug \
+            -derivedDataPath build \
+            CODE_SIGNING_ALLOWED=NO \
+            build
+      
 
     artifacts:
-      - build/ios/ipa/*.ipa
       - build/**/*.log
       - /tmp/xcodebuild_logs/*.log
       - $HOME/Library/Developer/Xcode/DerivedData/**/Build/**/*.app
